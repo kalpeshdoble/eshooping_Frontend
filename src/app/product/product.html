@@ -1,0 +1,31 @@
+<div class="search-bar">
+  <input
+    type="text"
+    placeholder="Search products by name..."
+    [(ngModel)]="searchTerm"
+    (keyup.enter)="searchByName()" />
+  <button (click)="searchByName()">Search</button>
+</div>
+
+<div class="category-buttons">
+  <button
+    *ngFor="let category of categories"
+    [class.active]="selectedCategory === category"
+    (click)="selectCategory(category)">
+    {{ category }}
+  </button>
+</div>
+
+<div class="product-grid">
+  <div *ngFor="let product of products" class="product-card">
+    <!-- <img src="https://via.placeholder.com/200x150" alt="{{ product.name }}" /> -->
+    <div class="product-info">
+      <h3>{{ product.name }}</h3>
+      <p class="category">{{ product.category }}</p>
+      <p>{{ product.description }}</p>
+      <p><strong>₹{{ product.price }}</strong></p>
+      <p>Stock: {{ product.stock }}</p>
+      <button (click)="addToCart(product)">Add to Cart</button>
+    </div>
+  </div>
+</div>
